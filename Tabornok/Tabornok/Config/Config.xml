@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tabornok>
+  <Irc>
+    <Szerver>
+      irc.rizon.net
+    </Szerver>
+    <Port>
+      6667
+    </Port>
+    <Elojel>
+      `
+    </Elojel>
+  </Irc>
+  <Nickserv>
+    <Nick>
+      Tabornok
+    </Nick>
+    <Nick2>
+      Tabornagy
+    </Nick2>
+    <Nick3>
+      Vezerezredes
+    </Nick3>
+    <Identify>
+      <Activate>
+        1
+      </Activate>
+      <Password>
+        111888
+      </Password>
+    </Identify>
+  </Nickserv>
+  <Chanserv>
+    <MainChannel>
+      #hun_bot
+    </MainChannel>
+  </Chanserv>
+</Tabornok>
