@@ -163,12 +163,13 @@ namespace Tabornok.Irc
             Thread IrcReaderThread = new Thread(new ThreadStart(ReadIrc));
             IrcReaderThread.Start();
 
-            IrcWriter.WriteLine("USER " + Conf.Nick + " 8 * :" + Conf.Nick);
-            IrcWriter.WriteLine("NICK " + Conf.Nick);
+            IrcWriter.WriteLine("USER " + ActualNick.CurrentNick + " 8 * :" + ActualNick.CurrentNick);
+            IrcWriter.WriteLine("NICK " + ActualNick.CurrentNick);
+
+            Log.Success("IRC Connect", "Sikeres IRC kapcsolódás");
 
             new IHandler();
 
-            Log.Success("IRC Connect", "Sikeres IRC kapcsolódás");
             Console.Title += String.Format(" [Szerver:Port - {0}:{1} - Nick: {2}]", 
                 Conf.Server, Conf.Port, Conf.Nick);
 

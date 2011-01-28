@@ -44,12 +44,12 @@ namespace Tabornok.BotConfig
 {
     class Conf
     {
-        private static string _Server = "irc.rizon.net";
+        private static string _Server;
         private static int _Port = 6667;
-        private static string _Nick = "Tabornok";
+        private static string _Nick;
         private static string _Nick2;
         private static string _Nick3;
-        private static string _MainChannel = "#hun_bot";
+        private static string _MainChannel;
         private static string _Elojel;
         private static int _Activate;
         private static string _IdentifyPass;

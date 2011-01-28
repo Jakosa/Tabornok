@@ -38,7 +38,7 @@ namespace Tabornok
         public static string CurrentNick
         {
             get { return _CurrentNick; }
-            private set { _CurrentNick = value; }
+            set { _CurrentNick = value; }
         }
     }
 }

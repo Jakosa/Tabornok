@@ -43,11 +43,23 @@ namespace Tabornok.Irc
 {
     class IHandler
     {
+        /// <summary>
+        /// Miután kapcsolódott az IRC szerverhez...
+        /// </summary>
         public IHandler()
         {
             IRC.IrcWriter.WriteLine("JOIN " + "#schumix");
-            IRC.IrcWriter.WriteLine("JOIN " + "#Tabornok");
-            IRC.IrcWriter.WriteLine("IDENTIFY 111888");
+            IRC.IrcWriter.WriteLine("JOIN " + BotConfig.Conf.MainChannel);
+
+            if (BotConfig.Conf.Activate == 1)
+            {
+                IRC.IrcWriter.WriteLine("IDENTIFY " + BotConfig.Conf.IdentifyPass);
+                Log.Msg("Nickserv Identify", "Sikeres Nickserv Identify");
+            }
+            else
+            {
+                Log.Msg("Nickserv Identify", "Nincs identify");
+            }
         }
 
         ~IHandler()

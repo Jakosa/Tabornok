@@ -71,6 +71,8 @@ namespace Tabornok.BotConfig
             Conf.Activate = Convert.ToInt32(xmldoc.SelectSingleNode("Tabornok/Nickserv/Identify/Activate").InnerText);
             Conf.IdentifyPass = xmldoc.SelectSingleNode("Tabornok/Nickserv/Identify/Password").InnerText;
 
+            ActualNick.CurrentNick = Conf.Nick;
+
             Log.Success("Config", "Config.xml betöltése sikeres");
         }
 
@@ -156,6 +158,8 @@ namespace Tabornok.BotConfig
                     XMLWriter.WriteString("PASSWORD");
                     XMLWriter.WriteEndElement();
                     // </Password>
+                    // </Identify>
+                    XMLWriter.WriteEndElement();
                     // </Nickserv>
                     XMLWriter.WriteEndElement();
 
@@ -163,7 +167,7 @@ namespace Tabornok.BotConfig
                     XMLWriter.WriteStartElement("", "Chanserv", "");
                     // <MainChannel>
                     XMLWriter.WriteStartElement("", "MainChannel", "");
-                    XMLWriter.WriteString("###");
+                    XMLWriter.WriteString("#Tabornok");
                     XMLWriter.WriteEndElement();
                     // </MainChannel>
                     // </Chanserv>
