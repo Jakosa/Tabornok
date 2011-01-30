@@ -45,6 +45,7 @@ using System.IO;
 using System.Threading;
 using Tabornok.BotConfig;
 using Tabornok.IrcHandler;
+using Tabornok.IrcHandler.IrcCommands;
 
 namespace Tabornok.Irc
 {
@@ -173,7 +174,7 @@ namespace Tabornok.Irc
             Console.Title += String.Format(" [Szerver:Port - {0}:{1} - Nick: {2}]", 
                 Conf.Server, Conf.Port, Conf.Nick);
 
-            ReConnect();
+            //ReConnect();
         }
 
         /// <summary>
@@ -209,18 +210,23 @@ namespace Tabornok.Irc
         {
             try
             {
+				string[] HM;
+				string args = "";
+				var command = new InitCommands();
+
                 while (true)
                 {
                     if ((Args = IrcReader.ReadLine()) == null)
                         break;
 
                     interpretArgs = Args.Split(' ');
+					args = "";
 
                     if (interpretArgs[0].Substring(0, 1) == ":")
                         interpretArgs[0] = interpretArgs[0].Remove(0, 1);
 
                     HostMask = interpretArgs[0];
-                    string[] HM = HostMask.Split('!');
+                    HM = HostMask.Split('!');
 
                     UserNick = HM[0];
 
@@ -230,17 +236,27 @@ namespace Tabornok.Irc
                     MessageType = interpretArgs[1];
                     Channel = interpretArgs[2];
 
-                    new InterpretArgs(interpretArgs);
+					for(int i = 3; i < interpretArgs.Length; i++)
+						args += " " + interpretArgs[i];
 
-                    if (Consol.BotConsol.ConsoleLog)
+					if(args != "" && args.Substring(0, 2) == " :")
+					{
+						args = args.Remove(0, 2);
+						command.TesztCommand(args);
+					}
+
+                    /*if (Consol.BotConsol.ConsoleLog)
                     {
                         Log.Debug("Args", Args);
-                    }
+                    }*/
+
+					Thread.Sleep(100);
                 }
             }
             catch (Exception e)
             {
                 Log.Error("IRC Reader", "Nem tudok olvasni adatot az Irc felől: " + e);
+				ReadIrc();
             }
         }
 

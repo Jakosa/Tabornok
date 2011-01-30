@@ -47,7 +47,7 @@ namespace Tabornok.Irc
     {
         public InterpretArgs(string[] info)
         {
-            new InitCommands(info);
+            //new InitCommands(info);
         }
 
         ~InterpretArgs()

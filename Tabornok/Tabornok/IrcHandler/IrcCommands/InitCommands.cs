@@ -38,26 +38,46 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Tabornok.BotConfig;
+using Tabornok.Irc;
 
 namespace Tabornok.IrcHandler.IrcCommands
 {
     class InitCommands
     {
-        public InitCommands(string[] info)
+        public InitCommands()
         {
-            if (info[0] == "ido")
-            {
-                LocDateTime.LocalDateTime();
-            }
-            if (info[0] == "info")
-            {
-                SysInfo.BotInfo();
-            }
+
         }
 
         ~InitCommands()
         {
             Log.Debug("InitCommands", "~InitCommands()");
         }
+
+		public void TesztCommand(string args)
+		{
+			string[] Args = args.Split(' ');
+
+			if(Args[0].Substring(0, 1) != "`")
+				return;
+
+			Args[0] = Args[0].Remove(0, 1);
+
+			Console.WriteLine(Args[0]);
+
+            if(Args[0] == "ido")
+            {
+                LocDateTime.LocalDateTime();
+            }
+
+            if(Args[0] == "info")
+            {
+                SysInfo.BotInfo();
+            }
+
+			if(Args[0] == "teszt")
+				IRC.IrcWriter.WriteLine("PRIVMSG #schumix :Megy!!!!");
+		}
     }
 }
